@@ -51,3 +51,30 @@ boxplot(datos$peso ~ datos$maquina,
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 
+#boxplot peso segun operari y maquina
+library(dplyr)#Se debe instalar primero
+
+opA <- dplyr::filter(datos, operario == "A") 
+opB <- dplyr::filter(datos, operario == "B")
+
+  #boxplot opA segun maquina
+x11()
+boxplot(opA$peso ~ opA$maquina,
+        ylab="gr",
+        names=c("M1", "M2"),
+        main="pesos segun opA y maquina",
+        ylim=c(min-5,max+5)
+)
+abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
+
+  #boxplot opB segun maquina
+x11()
+boxplot(opB$peso ~ opB$maquina,
+        ylab="gr",
+        names=c("M1", "M2"),
+        main="pesos segun opB y maquina",
+        ylim=c(min-5,max+5)
+)
+abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
+
+
