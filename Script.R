@@ -31,7 +31,7 @@ boxplot(datos$peso,
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 
-#bocplot del peso segun operario
+#boxplot del peso segun operario
 x11()
 boxplot(datos$peso ~ datos$operario,
         ylab="gr",
@@ -41,7 +41,7 @@ boxplot(datos$peso ~ datos$operario,
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 
-#bocplot del peso segun maquina
+#boxplot del peso segun maquina
 x11()
 boxplot(datos$peso ~ datos$maquina,
         ylab="gr",
@@ -51,14 +51,15 @@ boxplot(datos$peso ~ datos$maquina,
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 
-#boxplot peso segun operari y maquina
+#boxplot peso segun operario y maquina
 library(dplyr)#Se debe instalar primero
 
 opA <- dplyr::filter(datos, operario == "A") 
 opB <- dplyr::filter(datos, operario == "B")
 
-  #boxplot opA segun maquina
-x11()
+
+x11(); par(mfrow=c(1,2))
+#boxplot opA segun maquina
 boxplot(opA$peso ~ opA$maquina,
         ylab="gr",
         names=c("M1", "M2"),
@@ -67,8 +68,7 @@ boxplot(opA$peso ~ opA$maquina,
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 
-  #boxplot opB segun maquina
-x11()
+#boxplot opB segun maquina
 boxplot(opB$peso ~ opB$maquina,
         ylab="gr",
         names=c("M1", "M2"),
@@ -76,5 +76,8 @@ boxplot(opB$peso ~ opB$maquina,
         ylim=c(min-5,max+5)
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
+
+##Viendo los dos ultimos boxplots se puede observar que la
+##maquina 2 es la que parece ser la fuente del problema
 
 
