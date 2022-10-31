@@ -1,18 +1,18 @@
 #------------------------------------------------------#
 #--         ACTIVIDAD_3_ANALISIS_EXPLORATORIO        --#
-#-- Universidad del Valle: Escuela de Estadistica     --#
-#-- Asignatura: Probabilidad y Estad�stica            --#
-#-- Profesor: Ivan Mauricio Bermudez Vera             --#
-#-- Estudiantes:                                      --#
-#--   Juan Sebastian Getial Getial <2124644>          --#
+#-- Universidad del Valle: Escuela de Estadistica    --#
+#-- Asignatura: Probabilidad y Estadistica           --#
+#-- Profesor: Ivan Mauricio Bermudez Vera            --#
+#-- Estudiantes:                                     --#
+#--   Juan Sebastian Getial Getial <2124644>         --#
 #--   Mauricio Muñoz Gutierez <----------->          --#
-#--   Brayan Andres Sanchez Lozano <------->          --#
+#--   Brayan Andres Sanchez Lozano <2128974>         --#
 #------------------------------------------------------#
 
 #Se suben los datos
 datos <- read.table("data_embutidos.txt", header=TRUE, dec=".")
 
-#Espesificaciones del peso -> 220 ± 10 gr
+#Especificaciones del peso -> 220 ± 10 gr
 #Limites
 limite_superior = 220  + 10
 limite_inferior = 220 - 10
@@ -21,8 +21,7 @@ limite_inferior = 220 - 10
 max = max(datos$peso)
 min = min(datos$peso)
 
-#boxplot del peso
-
+#box plot del peso
 x11()
 boxplot(datos$peso,
         ylab="gr",
@@ -31,7 +30,7 @@ boxplot(datos$peso,
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 
-#boxplot del peso segun operario
+#box plot del peso segun operario
 x11()
 boxplot(datos$peso ~ datos$operario,
         ylab="gr",
@@ -41,7 +40,7 @@ boxplot(datos$peso ~ datos$operario,
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 
-#boxplot del peso segun maquina
+#box plot del peso segun máquina
 x11()
 boxplot(datos$peso ~ datos$maquina,
         ylab="gr",
@@ -51,15 +50,14 @@ boxplot(datos$peso ~ datos$maquina,
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 
-#boxplot peso segun operario y maquina
-library(dplyr)#Se debe instalar primero
+#box plot peso segun operario y máquina
+library(dplyr) #Se debe instalar primero
 
 opA <- dplyr::filter(datos, operario == "A") 
 opB <- dplyr::filter(datos, operario == "B")
 
-
-x11(); par(mfrow=c(1,2))
-#boxplot opA segun maquina
+#box plot operario A segun máquina
+x11()
 boxplot(opA$peso ~ opA$maquina,
         ylab="gr",
         names=c("M1", "M2"),
@@ -68,7 +66,8 @@ boxplot(opA$peso ~ opA$maquina,
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 
-#boxplot opB segun maquina
+#box plot operario B segun máquina
+x11()
 boxplot(opB$peso ~ opB$maquina,
         ylab="gr",
         names=c("M1", "M2"),
@@ -76,8 +75,3 @@ boxplot(opB$peso ~ opB$maquina,
         ylim=c(min-5,max+5)
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
-
-##Viendo los dos ultimos boxplots se puede observar que la
-##maquina 2 es la que parece ser la fuente del problema
-
-
