@@ -26,7 +26,8 @@ x11()
 boxplot(datos$peso,
         ylab="gr",
         ylim=c(min-5,max+5),
-        col="gray"
+        col="gray",
+        main="Peso de los embutidos"
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 
@@ -34,8 +35,8 @@ abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 x11()
 boxplot(datos$peso ~ datos$operario,
         ylab="gr",
-        names=c("Op A", "Op B"),
-        main="pesos segun op",
+        names=c("Operario A", "Operario B"),
+        main="Peso según operario",
         ylim=c(min-5,max+5)
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
@@ -44,8 +45,8 @@ abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 x11()
 boxplot(datos$peso ~ datos$maquina,
         ylab="gr",
-        names=c("M1", "M2"),
-        main="pesos segun maquina",
+        names=c("Máquina 1", "Máquina 2"),
+        main="Peso segun máquina",
         ylim=c(min-5,max+5)
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
@@ -57,21 +58,20 @@ opA <- dplyr::filter(datos, operario == "A")
 opB <- dplyr::filter(datos, operario == "B")
 
 #box plot operario A segun máquina
-x11()
+x11(); par(mfrow=c(1,2))
 boxplot(opA$peso ~ opA$maquina,
         ylab="gr",
-        names=c("M1", "M2"),
-        main="pesos segun opA y maquina",
+        names=c("Máquina 1", "Máquina 2"),
+        main="Peso según operario A y máquina",
         ylim=c(min-5,max+5)
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
 
 #box plot operario B segun máquina
-x11()
 boxplot(opB$peso ~ opB$maquina,
         ylab="gr",
-        names=c("M1", "M2"),
-        main="pesos segun opB y maquina",
+        names=c("Máquina 1", "Máquina 2"),
+        main="Peso según operario B y máquina",
         ylim=c(min-5,max+5)
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
