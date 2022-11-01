@@ -75,3 +75,14 @@ boxplot(opB$peso ~ opB$maquina,
         ylim=c(min-5,max+5)
 )
 abline(h=c(limite_inferior, limite_superior, 31.5),lty=2,col="Red")
+
+#grafico con las cuatro cajas.
+x11()
+boxplot(datos$peso ~ datos$maquina * datos$operario,
+        ylab="gr",
+        xlab = "Operario - Maquina",
+        names=c("A-1", "A-2", "B-1", "B-2"),
+        main="Peso segun operario y maquina",
+        ylim=c(min-5,max+5)
+)
+abline(h=c(limite_inferior,limite_superior,31.5),lty=2,col="Red")
